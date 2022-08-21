@@ -1,9 +1,7 @@
 import 'modern-normalize';
 import './sass/index.scss';
 
-import { Loading } from 'notiflix';
-
-const endDate = new Date('2022-08-24 00:00');
+const endDate = new Date('2022-08-24T00:00');
 
 const refs = {
   daysLabel: document.querySelector('[data-days]'),
@@ -16,7 +14,7 @@ const padTime = time => String(time).padStart(2, '0');
 const getTime = () => {
   const now = Date.now();
 
-  let delta = (endDate - now) / 1000;
+  let delta = (endDate.getTime() - now) / 1000;
 
   const days = Math.floor(delta / 86400);
   delta -= days * 86400;
@@ -41,7 +39,7 @@ const renderClock = ({ days, hours, minutes, seconds }) => {
 
 const updateTime = () => {
   const time = getTime();
-
+  // console.log(time);
   renderClock(time);
 };
 
